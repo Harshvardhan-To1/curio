@@ -1,0 +1,17 @@
+# Dependencies & build output (each app also has its own .gitignore)
+**/node_modules/
+**/dist/
+**/.next/
+**/coverage/
+**/.npm-cache/
+
+# Env & secrets
+.env
+.env.local
+**/.env
+**/.env.local
+
+# Misc
+.DS_Store
+*.log
+**/tsconfig.tsbuildinfo
