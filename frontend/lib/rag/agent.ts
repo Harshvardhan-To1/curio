@@ -94,7 +94,7 @@ function citationsFrom(chunks: RetrievedChunk[]): Citation[] {
 
 /**
  * Constrained ReAct loop (spec §4.4): the model emits JSON actions, we run the
- * tool, append the observation, and repeat — capped at MAX_AGENT_STEPS. Two bad
+ * tool, append the observation, and repeat - capped at MAX_AGENT_STEPS. Two bad
  * JSON replies trigger a graceful fall back to plain single-shot RAG.
  */
 export async function answerQuestion(
@@ -130,7 +130,7 @@ export async function answerQuestion(
   for (let step = 1; step <= MAX_AGENT_STEPS; step++) {
     let raw: string;
     try {
-      // NOTE: we deliberately do NOT use WebLLM's json_object response_format —
+      // NOTE: we deliberately do NOT use WebLLM's json_object response_format -
       // its grammar compiler is unstable in-browser. The few-shot prompt + the
       // lenient parseAction() below give us reliable JSON without it.
       raw = await llm.complete(
@@ -190,7 +190,7 @@ async function runTool(
         const pages = rag.listPages().slice(0, 30);
         return {
           observation: pages
-            .map((p) => `${p.pageTitle} — ${p.sourceUrl}`)
+            .map((p) => `${p.pageTitle} - ${p.sourceUrl}`)
             .join('\n'),
           found: [],
         };

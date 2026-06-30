@@ -40,7 +40,7 @@ export class RobotsService {
       }
     } catch (err) {
       this.logger.warn(
-        `robots.txt fetch failed for ${key}: ${(err as Error).message} — allowing all`,
+        `robots.txt fetch failed for ${key}: ${(err as Error).message} - allowing all`,
       );
       this.cache.set(key, null);
     }

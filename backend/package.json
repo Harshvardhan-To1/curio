@@ -1,7 +1,7 @@
 {
   "name": "siterag-backend",
   "version": "0.1.0",
-  "description": "SiteRAG backend — robots-aware crawler, extractor, chunker, and corpus API (NestJS)",
+  "description": "SiteRAG backend - robots-aware crawler, extractor, chunker, and corpus API (NestJS)",
   "license": "MIT",
   "engines": {
     "node": ">=20"

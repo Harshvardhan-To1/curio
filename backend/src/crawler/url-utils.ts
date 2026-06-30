@@ -74,7 +74,7 @@ export function normalizeUrl(input: string, base?: string): string | null {
   }
   if (url.protocol !== 'http:' && url.protocol !== 'https:') return null;
 
-  // Drop fragments — they never identify a distinct document.
+  // Drop fragments - they never identify a distinct document.
   url.hash = '';
 
   // Lowercase host; strip default ports.

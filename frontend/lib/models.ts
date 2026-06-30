@@ -15,7 +15,7 @@ export const MODELS: ModelOption[] = [
     id: 'Llama-3.2-1B-Instruct-q4f16_1-MLC',
     label: 'Llama 3.2 1B',
     sizeGb: 0.9,
-    blurb: 'Fastest & lightest — best for a first run.',
+    blurb: 'Fastest & lightest - best for a first run.',
     recommended: true,
   },
   {

@@ -53,7 +53,7 @@ export function UrlForm() {
           </div>
           <p className="mt-1.5 text-xs text-muted">
             We crawl the site server-side (robots-respecting). Generation runs
-            entirely in your browser — nothing you ask leaves your device.
+            entirely in your browser - nothing you ask leaves your device.
           </p>
         </div>
 

@@ -5,7 +5,7 @@ import { Card } from '@/components/ui';
 import type { Capabilities } from '@/lib/capabilities';
 
 /**
- * Shown when WebGPU is missing (spec §4.1). We don't dead-end the user — the
+ * Shown when WebGPU is missing (spec §4.1). We don't dead-end the user - the
  * app continues in a degraded retrieval-only mode, clearly labeled.
  */
 export function CapabilityWarning({
@@ -41,12 +41,12 @@ export function CapabilityWarning({
           {caps.lowMemory && (
             <p className="text-sm text-muted">
               Your device reports{' '}
-              <strong>{caps.deviceMemoryGb} GB</strong> of memory — large models
+              <strong>{caps.deviceMemoryGb} GB</strong> of memory - large models
               may not load. Stick to the smallest model.
             </p>
           )}
           <p className="text-sm text-muted">
-            You can still crawl a site and browse the most relevant passages —
+            You can still crawl a site and browse the most relevant passages -
             just without a written answer.
           </p>
           <button

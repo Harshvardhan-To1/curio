@@ -110,7 +110,7 @@ export function Chat({ onReset }: { onReset: () => void }) {
         </form>
         <p className="mt-1.5 text-center text-[11px] text-muted">
           {degraded
-            ? 'Showing relevant passages — enable WebGPU for written answers.'
+            ? 'Showing relevant passages - enable WebGPU for written answers.'
             : 'Answers are generated on your device and grounded in the crawled site.'}
         </p>
       </div>

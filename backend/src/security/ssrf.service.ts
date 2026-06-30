@@ -64,7 +64,7 @@ export class SsrfService {
     this.allowPrivate = this.config.get('ssrfAllowPrivate', { infer: true });
     if (this.allowPrivate) {
       this.logger.warn(
-        'SSRF_ALLOW_PRIVATE is enabled — private/loopback IPs are reachable. ' +
+        'SSRF_ALLOW_PRIVATE is enabled - private/loopback IPs are reachable. ' +
           'This must NEVER be set in production.',
       );
     }
@@ -92,7 +92,7 @@ export class SsrfService {
 
   /**
    * Validate scheme, port, and shape of a user-supplied URL. Does NOT resolve
-   * DNS — that happens at connect time so a TOCTOU/rebind can't slip past.
+   * DNS - that happens at connect time so a TOCTOU/rebind can't slip past.
    */
   validateUrl(input: string): URL {
     let url: URL;

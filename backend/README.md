@@ -1,4 +1,4 @@
-# SiteRAG — Backend (crawl → corpus)
+# SiteRAG - Backend (crawl → corpus)
 
 The server side of SiteRAG: a robots-aware, SSRF-guarded crawler that turns a
 website into a clean, chunked RAG corpus the browser can embed and chat with.
@@ -31,7 +31,7 @@ DNS and re-validate the resolved IP *before every request*, re-validate every
 redirect hop) needs request-level connection control. We keep **Cheerio** for
 HTML parsing but drive fetching through an **undici dispatcher with a DNS-pinning
 lookup** (`src/security/ssrf.service.ts`) so a socket can only ever reach an IP
-we approved — closing the DNS-rebinding window that high-level crawlers leave open.
+we approved - closing the DNS-rebinding window that high-level crawlers leave open.
 
 ### Embedding modes (`EMBED_MODE`)
 
@@ -78,9 +78,9 @@ npm run start:dev      # ROLE=all → API + worker in one process
 
 ## Process roles (`ROLE`)
 
-- `api` — HTTP only (no queue consumer).
-- `worker` — BullMQ consumer only (`dist/worker.js`, no HTTP).
-- `all` — both, for single-process local dev (default).
+- `api` - HTTP only (no queue consumer).
+- `worker` - BullMQ consumer only (`dist/worker.js`, no HTTP).
+- `all` - both, for single-process local dev (default).
 
 docker-compose runs `api` and `worker` as separate services per the spec.
 

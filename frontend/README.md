@@ -1,4 +1,4 @@
-# SiteRAG — Frontend (in-browser RAG + chat)
+# SiteRAG - Frontend (in-browser RAG + chat)
 
 The browser app: paste a URL → the backend crawls it → the browser embeds the
 corpus, retrieves with an **agentic loop**, and **generates answers entirely
@@ -39,13 +39,13 @@ Small (1–3B) models are weak at free-form tool calling, so the agent is a
 
 > Implementation note: the spec lists LangChain.js. Its in-browser local-model
 > adapters are immature and heavy, and the spec itself mandates a *constrained*
-> JSON loop — so the agent is implemented directly against WebLLM’s
+> JSON loop - so the agent is implemented directly against WebLLM’s
 > OpenAI-compatible API (`lib/rag/agent.ts`). Same behavior, far less fragility.
 
 ## Degraded mode
 
 No WebGPU (or no cross-origin isolation)? The app doesn’t dead-end: it still
-crawls, embeds, and shows the **most relevant passages with citations** —
+crawls, embeds, and shows the **most relevant passages with citations** -
 clearly labeled “retrieval-only”. Use Chrome/Edge 113+ on desktop for full
 generation.
 
@@ -74,7 +74,7 @@ npm run lint        # eslint (next/core-web-vitals)
 |---|---|
 | `NEXT_PUBLIC_API_URL` | Backend base URL (default `http://localhost:8000`) |
 | `NEXT_PUBLIC_DEFAULT_MODEL` | Default WebLLM model id |
-| `NEXT_PUBLIC_EMBED_MODEL` | Embedding model — **must match the backend in fat-server mode** |
+| `NEXT_PUBLIC_EMBED_MODEL` | Embedding model - **must match the backend in fat-server mode** |
 
 ## Cross-origin isolation (critical)
 
@@ -94,7 +94,7 @@ deploy to (Vercel/Cloudflare), or WebLLM will silently fail to start.
 ## Notable implementation choices
 
 - **Transformers.js is loaded from a CDN inside the embed worker** at runtime
-  (`webpackIgnore`), not bundled — its onnxruntime dep ships native node assets
+  (`webpackIgnore`), not bundled - its onnxruntime dep ships native node assets
   that break webpack/Terser. The browser loads the ESM directly; `credentialless`
   COEP allows it.
 - **Two web workers** keep the UI thread free: WebLLM generation and

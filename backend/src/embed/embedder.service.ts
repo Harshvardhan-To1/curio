@@ -5,7 +5,7 @@ import { AppConfig } from '../config/configuration';
 /**
  * Server-side embeddings for `fat-server` mode ONLY. Uses Transformers.js with
  * the SAME model id as the browser (mean-pool + L2-normalize) so vectors are
- * interchangeable — mismatched models silently break retrieval (spec §1, §5).
+ * interchangeable - mismatched models silently break retrieval (spec §1, §5).
  *
  * The `@huggingface/transformers` package is an optionalDependency: in
  * thin-server mode it need not be installed and is never imported.

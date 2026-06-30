@@ -4,7 +4,7 @@ Curio is a hybrid app, so it deploys as **two pieces**:
 
 | Piece | What it does | Free host |
 |-------|--------------|-----------|
-| **Frontend** (`frontend/`) | Next.js app — runs the in-browser LLM, embeddings, RAG, chat UI | **Vercel** |
+| **Frontend** (`frontend/`) | Next.js app - runs the in-browser LLM, embeddings, RAG, chat UI | **Vercel** |
 | **Backend** (`backend/`) | Crawler + corpus API + queue worker | **Render** (web service + Postgres + Key Value) |
 
 The language model and your questions stay in the browser; the backend only crawls
@@ -51,7 +51,7 @@ the API+worker web service, Postgres, and Redis (Key Value).
 > Vercel URL in step 3 (you don't have it yet).
 
 **Why one service runs both API and worker:** `ROLE=all` makes the single free web
-service host the HTTP API *and* the in-process BullMQ worker — so you don't need a
+service host the HTTP API *and* the in-process BullMQ worker - so you don't need a
 (paid) separate background worker. A crawl finishes in a minute or two, well inside
 the idle window.
 
@@ -60,7 +60,7 @@ the idle window.
 ## 2. Frontend → Vercel
 
 1. Vercel dashboard → **Add New… → Project** → import your `curio` repo.
-2. **Root Directory: `frontend`** (important — the repo has two apps).
+2. **Root Directory: `frontend`** (important - the repo has two apps).
    Framework preset **Next.js** is detected automatically.
 3. Add **Environment Variables**:
    | Name | Value |
@@ -71,7 +71,7 @@ the idle window.
 4. **Deploy.** Copy the resulting URL, e.g. `https://curio.vercel.app`.
 
 The required cross-origin isolation headers (`COOP`/`COEP`) are already declared in
-`frontend/next.config.mjs`, and Vercel applies them — no extra config needed.
+`frontend/next.config.mjs`, and Vercel applies them - no extra config needed.
 
 ---
 
@@ -92,7 +92,7 @@ The required cross-origin isolation headers (`COOP`/`COEP`) are already declared
 - `GET https://curio-api.onrender.com/api/health` → `{"status":"ok"}`
 - In the app: paste `https://example.com`, watch the crawl → embed → model-load →
   chat flow. The first crawl after the service has been idle is slow (cold start).
-- DevTools → Network: while chatting, **no request leaves for generation** — only the
+- DevTools → Network: while chatting, **no request leaves for generation** - only the
   initial crawl/corpus calls hit Render. That's the privacy guarantee, live.
 
 ---
@@ -123,14 +123,14 @@ The required cross-origin isolation headers (`COOP`/`COEP`) are already declared
 
 ## Alternatives & durability upgrades (still free)
 
-- **Frontend:** Cloudflare Pages works too — set the same COOP/COEP headers in a
+- **Frontend:** Cloudflare Pages works too - set the same COOP/COEP headers in a
   `_headers` file and the env vars above.
 - **Postgres durability:** Render's free Postgres expires after ~30 days. Swap in a
   permanent free **[Neon](https://neon.tech)** database: create one, copy its
   connection string into the `curio-api` `DATABASE_URL` env (remove the
   `fromDatabase` wiring), and drop `curio-db` from `render.yaml`.
 - **Redis:** **[Upstash](https://upstash.com)** has a free serverless Redis. It speaks
-  `rediss://` (TLS) — the backend already handles that. Watch the free command quota
+  `rediss://` (TLS) - the backend already handles that. Watch the free command quota
   if you run many crawls.
 - **Avoid cold starts:** a free uptime pinger (e.g. cron-job.org hitting `/api/health`
   every 10 min) keeps the Render service warm during demos.
@@ -141,7 +141,7 @@ The required cross-origin isolation headers (`COOP`/`COEP`) are already declared
 
 - Upgrade `curio-api` to a paid Render instance (always-on, more RAM) and split the
   worker into its own service (`node dist/worker.js`, `ROLE=worker`) for throughput.
-- Switch to **`fat-server`** mode + enable `USE_PGVECTOR` for large sites — build the
+- Switch to **`fat-server`** mode + enable `USE_PGVECTOR` for large sites - build the
   backend image with `--build-arg INSTALL_EMBEDDINGS=true` so the server-side embedder
   is included (heavier image, needs the same model id as the browser).
 - Replace `DB_SYNCHRONIZE=true` with real TypeORM migrations.

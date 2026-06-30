@@ -84,7 +84,7 @@ export class CrawlService {
     };
   }
 
-  /** Snapshot first, then live events — so a late SSE subscriber isn't blind. */
+  /** Snapshot first, then live events - so a late SSE subscriber isn't blind. */
   stream(jobId: string): Observable<ProgressEvent> {
     const snapshot$ = from(
       this.getStatus(jobId).then((s): ProgressEvent => ({

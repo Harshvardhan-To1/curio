@@ -123,7 +123,7 @@ export function MessageBubble({ message }: { message: ChatMessage }) {
 
         {message.fallback && (
           <div className="mt-1 text-[11px] italic text-amber-400">
-            (answered with plain retrieval — the agent couldn’t use tools)
+            (answered with plain retrieval - the agent couldn’t use tools)
           </div>
         )}
 

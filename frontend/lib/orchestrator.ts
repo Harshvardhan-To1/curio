@@ -270,7 +270,7 @@ export async function sendMessage(text: string) {
       error: (e as Error).message,
       content:
         (st().messages.find((m) => m.id === assistantId)?.content ?? '') ||
-        `Sorry — something went wrong: ${(e as Error).message}`,
+        `Sorry - something went wrong: ${(e as Error).message}`,
     });
   } finally {
     st().set({ thinking: false });

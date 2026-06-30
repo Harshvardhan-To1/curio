@@ -1,7 +1,7 @@
 import type { Config } from 'tailwindcss';
 
 /**
- * "Quiet Slate" — dark-first, developer-leaning palette.
+ * "Quiet Slate" - dark-first, developer-leaning palette.
  *   bg #16181D · surface #23262E · text #ECEEF1 · muted #9AA1AC · accent #FF7849
  * `brand` is the orange accent (kept as the name many components already use).
  */

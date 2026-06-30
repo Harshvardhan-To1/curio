@@ -7,7 +7,6 @@ import {
   ChevronDown,
   Cpu,
   FileText,
-  Github,
   Globe,
   GraduationCap,
   Headset,
@@ -19,7 +18,6 @@ import {
   Quote,
   ShieldCheck,
   Sparkles,
-  Twitter,
   WifiOff,
   Zap,
 } from 'lucide-react';
@@ -33,9 +31,7 @@ import { CapabilityWarning } from './capability-gate';
  * Edit CONTACT to point at your real product contact details.
  * ──────────────────────────────────────────────────────────────────────── */
 const CONTACT = {
-  email: 'hello@curio.app',
-  github: 'https://github.com/curio-ai/curio',
-  twitter: 'https://twitter.com/curio_ai',
+  email: 'topaiml1008@gmail.com',
 };
 
 export function Landing() {
@@ -68,7 +64,7 @@ export function Landing() {
             </h1>
             <p className="mx-auto mt-5 max-w-2xl text-pretty text-lg text-muted">
               Paste a URL. Curio crawls it, builds a knowledge base, and answers
-              your questions with citations — and the language model runs{' '}
+              your questions with citations - and the language model runs{' '}
               <strong className="text-fg">entirely in your browser</strong>.
               Nothing you ask ever leaves your device.
             </p>
@@ -130,15 +126,6 @@ function Nav() {
         </nav>
         <div className="flex items-center gap-3">
           <a
-            href={CONTACT.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden text-muted transition hover:text-fg sm:block"
-            aria-label="GitHub"
-          >
-            <Github className="h-5 w-5" />
-          </a>
-          <a
             href="#top"
             onClick={(e) => {
               e.preventDefault();
@@ -196,7 +183,7 @@ function HowItWorks() {
     {
       icon: <Globe className="h-5 w-5" />,
       title: 'Paste a URL',
-      body: 'We crawl and clean the site server-side — robots-aware, sitemap-first, boilerplate stripped into tidy Markdown.',
+      body: 'We crawl and clean the site server-side - robots-aware, sitemap-first, boilerplate stripped into tidy Markdown.',
     },
     {
       icon: <Cpu className="h-5 w-5" />,
@@ -206,7 +193,7 @@ function HowItWorks() {
     {
       icon: <MessageSquareText className="h-5 w-5" />,
       title: 'Chat with citations',
-      body: 'An agent retrieves the right passages and answers — grounded, streamed, and linked back to the source pages.',
+      body: 'An agent retrieves the right passages and answers - grounded, streamed, and linked back to the source pages.',
     },
   ];
   return (
@@ -238,12 +225,12 @@ function Features() {
     {
       icon: <Cpu className="h-5 w-5" />,
       title: 'In-browser LLM',
-      body: 'Generation runs on WebGPU via WebLLM. Your prompts never hit a server — true on-device privacy, zero inference cost.',
+      body: 'Generation runs on WebGPU via WebLLM. Your prompts never hit a server - true on-device privacy, zero inference cost.',
     },
     {
       icon: <Bot className="h-5 w-5" />,
       title: 'Agentic retrieval',
-      body: 'A constrained ReAct agent decides when to search, look up an exact term, read a page, or crawl one more — then answers.',
+      body: 'A constrained ReAct agent decides when to search, look up an exact term, read a page, or crawl one more - then answers.',
     },
     {
       icon: <Link2 className="h-5 w-5" />,
@@ -263,14 +250,14 @@ function Features() {
     {
       icon: <Layers className="h-5 w-5" />,
       title: 'Pick your model',
-      body: 'Trade speed for quality — Llama 3.2 1B/3B, Phi-3.5, Qwen 2.5. Switch any time; downloads are cached.',
+      body: 'Trade speed for quality - Llama 3.2 1B/3B, Phi-3.5, Qwen 2.5. Switch any time; downloads are cached.',
     },
   ];
   return (
     <Section
       id="features"
       eyebrow="Features"
-      title="Everything you need to chat with a site — privately"
+      title="Everything you need to chat with a site - privately"
       subtitle="Built on a hybrid architecture: heavy crawling on the server, private inference on your device."
       tinted
     >
@@ -309,7 +296,7 @@ function PrivacySpotlight() {
             <p className="mt-4 text-neutral-300">
               Most “chat with your site” tools pipe every message to a cloud LLM.
               Curio flips that: the model is downloaded once and runs locally on
-              your GPU. We literally cannot see your conversations — there’s no
+              your GPU. We literally cannot see your conversations - there’s no
               inference server to log them.
             </p>
             <ul className="mt-6 space-y-3 text-sm">
@@ -374,7 +361,7 @@ function UseCases() {
     {
       icon: <Globe className="h-5 w-5" />,
       title: 'Internal wikis',
-      body: 'Make a sprawling intranet searchable and conversational — without shipping data to a vendor.',
+      body: 'Make a sprawling intranet searchable and conversational - without shipping data to a vendor.',
     },
   ];
   return (
@@ -461,7 +448,7 @@ function Faq() {
     },
     {
       q: 'Can I put this on my own website?',
-      a: 'Yes — an embeddable chat widget lets you drop a corner bubble onto your site that chats with your pre-indexed content. Get in touch and we’ll set you up.',
+      a: 'Yes - an embeddable chat widget lets you drop a corner bubble onto your site that chats with your pre-indexed content. Get in touch and we’ll set you up.',
     },
   ];
   const [open, setOpen] = useState<number | null>(0);
@@ -504,7 +491,7 @@ function CtaBand() {
             Ready to chat with your site?
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-muted">
-            No account, no setup. Paste a URL and start asking — privately.
+            No account, no setup. Paste a URL and start asking - privately.
           </p>
           <button
             onClick={() => {
@@ -542,8 +529,7 @@ function Footer() {
     {
       title: 'Resources',
       links: [
-        ['Documentation', CONTACT.github],
-        ['GitHub', CONTACT.github],
+        ['Documentation', '#'],
         ['Privacy', '#'],
         ['Terms', '#'],
       ],
@@ -557,28 +543,8 @@ function Footer() {
             <Logo />
             <p className="mt-3 max-w-xs text-sm text-muted">
               Chat with any website, privately. The language model runs in your
-              browser — your questions stay yours.
+              browser - your questions stay yours.
             </p>
-            <div className="mt-4 flex gap-3">
-              <a
-                href={CONTACT.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub"
-                className="grid h-9 w-9 place-items-center rounded-lg border border-line text-muted transition hover:text-fg"
-              >
-                <Github className="h-4 w-4" />
-              </a>
-              <a
-                href={CONTACT.twitter}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Twitter"
-                className="grid h-9 w-9 place-items-center rounded-lg border border-line text-muted transition hover:text-fg"
-              >
-                <Twitter className="h-4 w-4" />
-              </a>
-            </div>
           </div>
 
           {cols.map((c) => (

@@ -31,7 +31,7 @@ const HTML_TYPES = ['text/html', 'application/xhtml+xml'];
 /**
  * Robots-aware, SSRF-guarded, polite BFS crawler. Runs sequentially (one
  * in-flight request) so the rate limit and crawl-delay are naturally honored.
- * One bad page is recorded and skipped — it never fails the whole job.
+ * One bad page is recorded and skipped - it never fails the whole job.
  */
 @Injectable()
 export class CrawlerService {

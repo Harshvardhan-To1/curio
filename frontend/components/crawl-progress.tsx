@@ -138,7 +138,7 @@ export function CrawlProgress() {
           {indexState === 'active' && <Progress value={indexPct} />}
           {largeCorpusWarning && (
             <p className="mt-2 text-xs text-amber-400">
-              Large corpus ({corpusSize} chunks) — in-browser search may slow
+              Large corpus ({corpusSize} chunks) - in-browser search may slow
               down. Consider a smaller crawl or fat-server mode.
             </p>
           )}

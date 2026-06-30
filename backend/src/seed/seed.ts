@@ -51,7 +51,7 @@ async function main() {
   console.log(`✓ corpus: ${corpus.total} chunks (mode=${corpus.embedMode})`);
   for (const c of corpus.chunks) {
     console.log(
-      `  • [${c.headingPath.join(' > ') || '—'}] ${c.text.slice(0, 80)}…`,
+      `  • [${c.headingPath.join(' > ') || '-'}] ${c.text.slice(0, 80)}…`,
     );
   }
   console.log('Smoke test passed.');
