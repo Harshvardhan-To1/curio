@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  @apply bg-bg text-fg antialiased;
+}
+
+::selection {
+  background-color: rgba(255, 120, 73, 0.25);
+}
+
+/* Section anchor offset so the sticky nav doesn't cover headings */
+[id] {
+  scroll-margin-top: 80px;
+}
+
+/* Markdown answers (typography plugin not used; style .prose directly) */
+.prose {
+  line-height: 1.6;
+  font-size: 0.9rem;
+}
+.prose p {
+  margin: 0.5rem 0;
+}
+.prose h1,
+.prose h2,
+.prose h3 {
+  font-weight: 600;
+  margin: 0.75rem 0 0.35rem;
+}
+.prose ul,
+.prose ol {
+  margin: 0.4rem 0;
+  padding-left: 1.25rem;
+}
+.prose ul {
+  list-style: disc;
+}
+.prose ol {
+  list-style: decimal;
+}
+.prose li {
+  margin: 0.15rem 0;
+}
+.prose a {
+  color: #ff7849;
+  text-decoration: underline;
+}
+.prose strong {
+  color: #fff;
+  font-weight: 600;
+}
+.prose code {
+  background: #16181d;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+.prose pre {
+  background: #0f1115;
+  padding: 0.75rem;
+  border-radius: 8px;
+  overflow: auto;
+  margin: 0.5rem 0;
+}
+.prose pre code {
+  background: transparent;
+  padding: 0;
+}
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.5rem 0;
+}
+.prose th,
+.prose td {
+  border: 1px solid #30343d;
+  padding: 0.3rem 0.5rem;
+  text-align: left;
+}
+
+/* Thin dark scrollbars */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #3a3f49 transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #3a3f49;
+  border-radius: 9999px;
+}

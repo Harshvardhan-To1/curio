@@ -1,0 +1,86 @@
+# SiteRAG local stack: Postgres + Redis + API + crawl worker.
+# `make dev` brings this up; `make seed` runs the end-to-end smoke test.
+#
+# The frontend (browser app: WebLLM + embeddings + RAG) is a separate
+# deliverable and is intentionally not part of this backend compose file.
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: siterag
+      POSTGRES_PASSWORD: siterag
+      POSTGRES_DB: siterag
+    ports:
+      # Published on 5433 to avoid clashing with a host Postgres on 5432.
+      # Containers talk to each other over the compose network on 5432.
+      - '5433:5432'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U siterag']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    command: ['redis-server', '--save', '', '--appendonly', 'no']
+    ports:
+      - '6379:6379'
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build:
+      context: ./backend
+      args:
+        INSTALL_EMBEDDINGS: 'false'
+    command: ['node', 'dist/main.js']
+    environment:
+      ROLE: api
+      PORT: '8000'
+      LOG_PRETTY: 'false'
+      DATABASE_URL: postgres://siterag:siterag@postgres:5432/siterag
+      DB_SYNCHRONIZE: 'true'
+      REDIS_URL: redis://redis:6379
+      CORS_ORIGINS: http://localhost:3000
+      EMBED_MODE: thin-server
+    ports:
+      - '8000:8000'
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ['CMD-SHELL', 'node -e "fetch(\"http://localhost:8000/api/health\").then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"']
+      interval: 10s
+      timeout: 5s
+      retries: 6
+
+  worker:
+    build:
+      context: ./backend
+      args:
+        INSTALL_EMBEDDINGS: 'false'
+    command: ['node', 'dist/worker.js']
+    environment:
+      ROLE: worker
+      LOG_PRETTY: 'false'
+      DATABASE_URL: postgres://siterag:siterag@postgres:5432/siterag
+      DB_SYNCHRONIZE: 'true'
+      REDIS_URL: redis://redis:6379
+      EMBED_MODE: thin-server
+      CRAWL_WORKER_CONCURRENCY: '2'
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+volumes:
+  pgdata:

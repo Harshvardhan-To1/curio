@@ -1,0 +1,56 @@
+# Render Blueprint — Curio backend (free tier).
+# Provisions: API+worker web service (one process via ROLE=all), Postgres,
+# and a Key Value (Redis) instance. Deploy with: New + → Blueprint → this repo.
+#
+# After it's up, set CORS_ORIGINS (in the curio-api env) to your Vercel URL.
+
+databases:
+  - name: curio-db
+    plan: free
+    databaseName: curio
+    user: curio
+
+services:
+  # Redis (BullMQ queue + SSE pub/sub)
+  - type: keyvalue
+    name: curio-redis
+    plan: free
+    ipAllowList: [] # internal connections only
+
+  # Backend: API + in-process crawl worker (ROLE=all keeps it to ONE free service)
+  - type: web
+    name: curio-api
+    runtime: docker
+    rootDir: backend
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /api/health
+    envVars:
+      - key: ROLE
+        value: all
+      - key: NODE_ENV
+        value: production
+      - key: EMBED_MODE
+        value: thin-server # browser embeds; no server GPU/cost
+      - key: DB_SYNCHRONIZE
+        value: 'true' # auto-creates tables on boot (fine for a demo)
+      - key: SSRF_ALLOW_PRIVATE
+        value: 'false' # NEVER true in production
+      - key: LOG_PRETTY
+        value: 'false'
+      - key: CRAWL_MAX_PAGES
+        value: '60' # keep crawls modest on 512MB free RAM
+      - key: CRAWL_WORKER_CONCURRENCY
+        value: '1'
+      # Set this to your deployed frontend origin, e.g. https://curio.vercel.app
+      - key: CORS_ORIGINS
+        sync: false
+      - key: DATABASE_URL
+        fromDatabase:
+          name: curio-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          name: curio-redis
+          type: keyvalue
+          property: connectionString
